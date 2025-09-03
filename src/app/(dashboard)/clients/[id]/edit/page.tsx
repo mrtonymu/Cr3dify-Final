@@ -5,9 +5,9 @@ import type { Metadata } from 'next'
 import ClientEditView from '@/views/clients/ClientEditView'
 
 interface ClientEditPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export const metadata: Metadata = {
@@ -15,10 +15,12 @@ export const metadata: Metadata = {
   description: '编辑客户信息。'
 }
 
-export default function ClientEditPage({ params }: ClientEditPageProps) {
+export default async function ClientEditPage({ params }: ClientEditPageProps) {
+  const { id } = await params
+  
   return (
     <Suspense fallback={<div>加载中...</div>}>
-      <ClientEditView clientId={params.id} />
+      <ClientEditView clientId={id} />
     </Suspense>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 import { useRouter } from 'next/navigation'
 
@@ -49,7 +49,7 @@ const ClientsListView = () => {
   })
 
   // 获取客户数据
-  const fetchClients = async () => {
+  const fetchClients = useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
@@ -72,7 +72,7 @@ const ClientsListView = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [filters, paginationModel.pageSize, paginationModel.page])
 
   // 删除客户
   const handleDeleteClient = async (id: string) => {

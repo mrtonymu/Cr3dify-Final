@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 import { useRouter } from 'next/navigation'
 
@@ -39,7 +39,7 @@ const ClientDetailView = ({ clientId }: ClientDetailViewProps) => {
   const [deleting, setDeleting] = useState(false)
 
   // 获取客户详情
-  const fetchClient = async () => {
+  const fetchClient = useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
@@ -57,7 +57,7 @@ const ClientDetailView = ({ clientId }: ClientDetailViewProps) => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [clientId])
 
   // 删除客户
   const handleDeleteClient = async () => {

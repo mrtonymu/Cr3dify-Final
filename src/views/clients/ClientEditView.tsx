@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 import { useRouter } from 'next/navigation'
 
@@ -60,7 +60,7 @@ const ClientEditView = ({ clientId }: ClientEditViewProps) => {
   })
 
   // 获取客户详情
-  const fetchClient = async () => {
+  const fetchClient = useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
@@ -88,7 +88,7 @@ const ClientEditView = ({ clientId }: ClientEditViewProps) => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [clientId, reset])
 
   // 提交表单
   const onSubmit = async (data: UpdateClientInput) => {
