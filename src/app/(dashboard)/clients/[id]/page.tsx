@@ -5,9 +5,9 @@ import type { Metadata } from 'next'
 import ClientDetailView from '@/views/clients/ClientDetailView'
 
 interface ClientDetailPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export const metadata: Metadata = {
@@ -15,10 +15,12 @@ export const metadata: Metadata = {
   description: '查看客户的详细信息。'
 }
 
-export default function ClientDetailPage({ params }: ClientDetailPageProps) {
+export default async function ClientDetailPage({ params }: ClientDetailPageProps) {
+  const { id } = await params
+  
   return (
     <Suspense fallback={<div>加载中...</div>}>
-      <ClientDetailView clientId={params.id} />
+      <ClientDetailView clientId={id} />
     </Suspense>
   )
 }
