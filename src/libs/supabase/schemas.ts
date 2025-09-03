@@ -24,7 +24,7 @@ export const CreateClientSchema = z.object({
     .max(500, '地址不能超过500个字符')
     .optional()
     .nullable(),
-  status: ClientStatus.default('active')
+  status: ClientStatus
 })
 
 // 客户更新表单验证模式
