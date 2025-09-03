@@ -27,8 +27,7 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import type { GridColDef } from '@mui/x-data-grid'
 
 import { getClients, deleteClient } from '@/libs/supabase'
-import type { Database } from '@/libs/supabase'
-import type { ClientsFilters } from '@/libs/supabase'
+import type { Database, ClientsFilters } from '@/libs/supabase'
 
 type Client = Database['public']['Tables']['clients']['Row']
 
@@ -221,7 +220,7 @@ const ClientsListView = () => {
   // 初始化和数据更新
   useEffect(() => {
     fetchClients()
-  }, [paginationModel, filters])
+  }, [paginationModel, filters, fetchClients])
 
   return (
     <Grid container spacing={6}>

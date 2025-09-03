@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+
 import { useRouter } from 'next/navigation'
 
 import { useForm, Controller } from 'react-hook-form'
@@ -24,8 +25,7 @@ import {
   Link
 } from '@mui/material'
 
-import { getClientById, updateClient } from '@/libs/supabase'
-import { UpdateClientSchema } from '@/libs/supabase'
+import { getClientById, updateClient, UpdateClientSchema } from '@/libs/supabase'
 import type { Database } from '@/libs/supabase'
 
 type Client = Database['public']['Tables']['clients']['Row']
@@ -114,7 +114,7 @@ const ClientEditView = ({ clientId }: ClientEditViewProps) => {
 
   useEffect(() => {
     fetchClient()
-  }, [clientId])
+  }, [clientId, fetchClient])
 
   if (loading) {
     return (

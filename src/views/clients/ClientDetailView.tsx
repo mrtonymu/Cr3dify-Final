@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+
 import { useRouter } from 'next/navigation'
 
 import {
@@ -122,7 +123,7 @@ const ClientDetailView = ({ clientId }: ClientDetailViewProps) => {
 
   useEffect(() => {
     fetchClient()
-  }, [clientId])
+  }, [clientId, fetchClient])
 
   if (loading) {
     return (
